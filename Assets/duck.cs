@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class duck : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class duck : MonoBehaviour
     [SerializeField, Range(min: 0,max: 1)] float MoveDuration = 0.1f;
     [SerializeField, Range(min: 0,max: 1)] float jumpHeight = 0.5f;
 
+    public UnityEvent <Vector3> OnJumpEnd;
     void Update()
     {
         if (DOTween.IsTweening(targetOrId: transform))
@@ -43,10 +45,14 @@ public class duck : MonoBehaviour
         transform.DOJump(
             endValue: transform.position + direction,
             jumpPower: jumpHeight,
-            numJumps: 1,
-            duration: MoveDuration);
+            numJumps: 5,
+            duration: MoveDuration).onComplete=BroadCastPositionJumpEnd ;
 
             transform.forward = direction;
         
+    }
+    private void BroadCastPositionJumpEnd()
+    {
+        OnJumpEnd.Invoke(arg0: transform.position);
     }
 }
