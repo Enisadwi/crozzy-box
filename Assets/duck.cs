@@ -10,6 +10,10 @@ public class duck : MonoBehaviour
     [SerializeField, Range(min: 0,max: 1)] float MoveDuration = 0.1f;
     [SerializeField, Range(min: 0,max: 1)] float jumpHeight = 0.5f;
 
+    [SerializeField] int leftMoveLimit;
+    [SerializeField] int rightMoveLimit;
+    [SerializeField] int backMoveLimit;
+
     public UnityEvent <Vector3> OnJumpEnd;
     void Update()
     {
@@ -40,17 +44,33 @@ public class duck : MonoBehaviour
         Move(direction: direction);
     }
 
-    public void Move (Vector3 direction)
+    public void Move(Vector3 direction)
     {
+        var targetPosition = transform.position + direction;
+
+        if (targetPosition.x < leftMoveLimit || 
+            targetPosition.x > rightMoveLimit || 
+            targetPosition.z < backMoveLimit)
+            targetPosition = transform.position;
+
         transform.DOJump(
-            endValue: transform.position + direction,
+            endValue: transform.position,
             jumpPower: jumpHeight,
-            numJumps: 5,
+            numJumps: 1,
             duration: MoveDuration).onComplete=BroadCastPositionJumpEnd ;
 
             transform.forward = direction;
         
     }
+
+    public void UpdateMoveLimit(int horizontalSize, int backLimit)
+    {
+        leftMoveLimit = -horizontalSize/2;
+        rightMoveLimit = horizontalSize/2;
+        backMoveLimit = backLimit;
+
+    }
+
     private void BroadCastPositionJumpEnd()
     {
         OnJumpEnd.Invoke(arg0: transform.position);

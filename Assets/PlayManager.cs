@@ -5,14 +5,11 @@ using UnityEngine.Events;
 
 public class PlayManager : MonoBehaviour
 {
-    [SerializeField] duck Duck;
    [SerializeField] List<Terrain> terrainList;
    [SerializeField] int initialGrassCount =5;
    [SerializeField] int horizontalSize;
    [SerializeField] int backViewDistance =-4;
     [SerializeField] int forwardViewDistance =15;
-   
-   [SerializeField, Range (min: 0, max: 1  )] float treeProbability;
 
 
     Dictionary<int, Terrain> activeTerrainDict = new Dictionary<int, Terrain>(capacity: 20);
@@ -38,6 +35,7 @@ public class PlayManager : MonoBehaviour
     {
       SpawnRandomTerrain(zPos: zPos);
     }
+    OnUpdateTerrainLimit.Invoke(arg0: horizontalSize,arg1: travelDistance + backViewDistance);
       
     }
 
@@ -48,15 +46,12 @@ public class PlayManager : MonoBehaviour
     for (int z= -1; z >= -3; z--)
     {
         var checkPos = zPos +z;
-        System.Type comparatorType = comparatorTerrain.GetType();
-        System.Type checkType = activeTerrainDict[key: checkPos].GetType();
-
         if (comparatorTerrain == null)
         {
             comparatorTerrain = activeTerrainDict[key: checkPos];
             continue;
         }
-        else if (comparatorType != checkType)
+        else if (comparatorTerrain.GetType()!=activeTerrainDict[key: checkPos].GetType())
         { 
              randomIndex = Random.Range(minInclusive: 0, maxExclusive: terrainList.Count);
              return SpawnTerrain (terrain: terrainList[index: randomIndex],zPos: zPos);
@@ -71,10 +66,7 @@ public class PlayManager : MonoBehaviour
     var candidateTerrain = new List<Terrain>(collection: terrainList);
     for (int i = 0; i < candidateTerrain.Count; i++)
     {
-        System.Type comparatorType = comparatorTerrain.GetType();
-        System.Type checkType = candidateTerrain[index: i].GetType();
-
-        if (comparatorType == checkType)
+        if (comparatorTerrain.GetType()== candidateTerrain[index: i].GetType())
         {
             candidateTerrain.Remove(item: candidateTerrain[index :i]);
             break;

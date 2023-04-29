@@ -45,7 +45,8 @@ public class Grass : Terrain
 private void SpawnRandomTree(int xpos)
 {
         
-            var randomIndex = Random.Range(minInclusive: 0, maxExclusive: treePrefab.Count);
+            var randomIndex = Random.Range(minInclusive: 0, 
+            maxExclusive: treePrefab.Count);
             var prefab = treePrefab[index: randomIndex];
 
             var tree= Instantiate(original: prefab, parent: transform);
