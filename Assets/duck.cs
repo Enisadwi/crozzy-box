@@ -54,7 +54,7 @@ public class duck : MonoBehaviour
             targetPosition = transform.position;
 
         transform.DOJump(
-            endValue: transform.position,
+            endValue: targetPosition,
             jumpPower: jumpHeight,
             numJumps: 1,
             duration: MoveDuration).onComplete=BroadCastPositionJumpEnd ;
