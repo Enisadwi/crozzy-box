@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Tree : MonoBehaviour
 {
-    static HashSet<Vector3> positionSet;
+    static HashSet<Vector3> positionSet = new HashSet<Vector3>();
 
-    public static HashSet<Vector3> PositionSet {get => positionSet; }
+    public static HashSet<Vector3> AllPositions {
+        get => new HashSet<Vector3>(collection: positionSet); }
+
     private void OnEnable()
     {
         positionSet.Add(item: this.transform.position);
     }
 
-    // Update is called once per frame
     private void OnDisable()
     {
         positionSet.Remove(item: this.transform.position);  

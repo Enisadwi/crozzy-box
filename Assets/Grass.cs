@@ -49,8 +49,12 @@ private void SpawnRandomTree(int xpos)
             maxExclusive: treePrefab.Count);
             var prefab = treePrefab[index: randomIndex];
 
-            var tree= Instantiate(original: prefab, parent: transform);
-            tree.transform.localPosition=new Vector3(x: xpos, y: 0, z:0);
+            var tree = Instantiate(
+                original: prefab, 
+                position: new Vector3 (x: xpos, y: 0, z: this.transform.position.z),
+                rotation: Quaternion.identity,
+                parent: transform);
+            
           
         }
     }

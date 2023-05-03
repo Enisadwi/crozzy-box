@@ -50,17 +50,21 @@ public class duck : MonoBehaviour
 
         if (targetPosition.x < leftMoveLimit || 
             targetPosition.x > rightMoveLimit || 
-            targetPosition.z < backMoveLimit)
-            targetPosition = transform.position;
+            targetPosition.z < backMoveLimit ||
+            Tree.AllPositions.Contains(item: targetPosition))
+            {
+                 targetPosition = transform.position;
+            }
+           
 
         transform.DOJump(
             endValue: targetPosition,
             jumpPower: jumpHeight,
             numJumps: 1,
-            duration: MoveDuration).onComplete=BroadCastPositionJumpEnd ;
+            duration: MoveDuration).
+            onComplete=BroadCastPositionJumpEnd ;
 
-            transform.forward = direction;
-        
+            transform.forward = direction;       
     }
 
     public void UpdateMoveLimit(int horizontalSize, int backLimit)
