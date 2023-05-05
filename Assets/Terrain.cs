@@ -6,9 +6,12 @@ public class Terrain : MonoBehaviour
 {
    [SerializeField] GameObject tilePrefab;
 
+   protected int horizontalSize;
+
 
    public virtual void Generate(int size)
    {
+    horizontalSize = size;
     if (size == 0)
     return;
 
@@ -33,7 +36,7 @@ public class Terrain : MonoBehaviour
     private GameObject SpawnTile(int xPos)
     {
          var go=Instantiate(original: tilePrefab, parent: transform);
-        go.transform.localPosition=new Vector3(x: xPos,y:0,z:0);
+        go.transform.localPosition=new Vector3(x: xPos, y:0 , z:0);
         return go;
     }
 
