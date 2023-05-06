@@ -21,6 +21,7 @@ public class Road : Terrain
             y: 0,
             z: this.transform.position.z);
 
+            Debug.Log(this.transform.position.z);
             carRotation = Quaternion.Euler(x: 0, y: -90, z:0);
         }
         else
@@ -30,10 +31,11 @@ public class Road : Terrain
             y: 0,
             z: this.transform.position.z);
 
+            
+            Debug.Log(this.transform.position.z);
             carRotation = Quaternion.Euler(x: 0, y: 90, z:0);
     }
     }
-
     private void Update(){
         if (timer <= 0)
         {

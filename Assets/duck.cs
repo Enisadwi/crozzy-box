@@ -15,8 +15,13 @@ public class duck : MonoBehaviour
     [SerializeField] int backMoveLimit;
 
     public UnityEvent <Vector3> OnJumpEnd;
+    private bool isDie = false;
+
     void Update()
     {
+        if(isDie)
+            return;
+
         if (DOTween.IsTweening(targetOrId: transform))
         return;
 
@@ -78,5 +83,15 @@ public class duck : MonoBehaviour
     private void BroadCastPositionJumpEnd()
     {
         OnJumpEnd.Invoke(arg0: transform.position);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (isDie == true)
+        return;
+        transform.DOScaleY(endValue: 0.1f, duration: 0.2f);
+        
+        isDie = true;
+       
     }
 }
