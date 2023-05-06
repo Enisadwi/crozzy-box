@@ -8,7 +8,6 @@ public class Terrain : MonoBehaviour
 
    protected int horizontalSize;
 
-
    public virtual void Generate(int size)
    {
     horizontalSize = size;
@@ -31,7 +30,6 @@ public class Terrain : MonoBehaviour
     DarkenObject(go:rightBoundaryTile); 
     }
     
-
 
     private GameObject SpawnTile(int xPos)
     {

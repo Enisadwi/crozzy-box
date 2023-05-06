@@ -10,13 +10,13 @@ public class Road : Terrain
 
     float timer;
 
-    Vector3 CarspawnPosition;
+    Vector3 carSpawnPosition;
     Quaternion carRotation;
 
     private void Start(){
         if (Random.value > 0.5f )
         {
-        CarspawnPosition = new Vector3(
+        carSpawnPosition = new Vector3(
             x: horizontalSize/2 + 3,
             y: 0,
             z: this.transform.position.z);
@@ -25,7 +25,7 @@ public class Road : Terrain
         }
         else
         {
-        CarspawnPosition = new Vector3(
+        carSpawnPosition = new Vector3(
             x: -(horizontalSize/2 + 3),
             y: 0,
             z: this.transform.position.z);
@@ -43,9 +43,10 @@ public class Road : Terrain
 
                var car = Instantiate(
                     original: carPrefab, 
-                    position: CarspawnPosition,
+                    position: carSpawnPosition,
                     rotation: carRotation);
-            car.SetUpDistanceLimit(distance: horizontalSize + 6);
+
+            car.SetUpDistanceLimit(distance: horizontalSize + 1);
 
             return;
         }

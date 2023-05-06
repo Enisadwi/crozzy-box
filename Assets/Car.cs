@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    [SerializeField, Range(min: 0, max:5)] float speed = 1;
+    [SerializeField, Range(min: 0, max:10)] float speed = 1;
 
     Vector3 initialPosition;
     float distanceLimit = float.MaxValue;
@@ -13,6 +13,7 @@ public class Car : MonoBehaviour
     {
         this.distanceLimit = distance;
     }
+    
     private void Start()
     {
         initialPosition = this.transform.position;
@@ -22,7 +23,7 @@ public class Car : MonoBehaviour
     {
         transform.Translate(
             translation: Vector3.forward
-            *speed*Time.deltaTime);
+             * speed * Time.deltaTime);
 
             if (Vector3.Distance(a: initialPosition, 
             b: this.transform.position) > this.distanceLimit)
@@ -32,3 +33,4 @@ public class Car : MonoBehaviour
         
     }
 }
+
