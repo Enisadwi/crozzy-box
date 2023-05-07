@@ -97,7 +97,7 @@ public class duck : MonoBehaviour
 
         transform.DOScaleY(endValue: 0.1f, duration: 0.2f);
         isDie = true;
-        Invoke("Die", 3);
+        Invoke("Die", 1);
         }
 
         else if (other.CompareTag(tag: "Coin"))
