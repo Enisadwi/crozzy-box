@@ -54,8 +54,6 @@ private void SpawnRandomTree(int xpos)
                 position: new Vector3 (x: xpos, y: 0, z: this.transform.position.z),
                 rotation: Quaternion.identity,
                 parent: transform);
-            
-          
         }
     }
 

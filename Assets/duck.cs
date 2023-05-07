@@ -15,11 +15,14 @@ public class duck : MonoBehaviour
     [SerializeField] int backMoveLimit;
 
     public UnityEvent <Vector3> OnJumpEnd;
+    public UnityEvent <int> OnGetCoin;
+    public UnityEvent OnDie;
+
     private bool isDie = false;
 
     void Update()
     {
-        if(isDie)
+        if( isDie)
             return;
 
         if (DOTween.IsTweening(targetOrId: transform))
@@ -87,11 +90,26 @@ public class duck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag(tag: "Car"))
+        {
         if (isDie == true)
         return;
+
         transform.DOScaleY(endValue: 0.1f, duration: 0.2f);
-        
         isDie = true;
-       
+        Invoke("Die", 3);
+        }
+
+        else if (other.CompareTag(tag: "Coin"))
+        {
+            var coin = other.GetComponent<Coin>();
+            OnGetCoin.Invoke(arg0: coin.Value);
+            coin.Collected();
+        }
+    }
+
+    private void Die()
+    {
+        OnDie.Invoke();
     }
 }

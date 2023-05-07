@@ -48,7 +48,7 @@ public class Road : Terrain
                     position: carSpawnPosition,
                     rotation: carRotation);
 
-            car.SetUpDistanceLimit(distance: horizontalSize + 1);
+            car.SetUpDistanceLimit(distance: horizontalSize + 6);
 
             return;
         }
