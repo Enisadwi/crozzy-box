@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameOverText : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] TMP_Text gameOverText;
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateText(int score)
     {
-        
+        gameOverText.text = "Game Over!\n Your Score: "+ score;
     }
 }
