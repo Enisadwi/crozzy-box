@@ -760,7 +760,7 @@ PrefabInstance:
     - target: {fileID: 6947396399965634462, guid: 5166ebbf52c6f924f84e3333dfc9014b, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: a17373095a23b4e45b458f819acc6098, type: 3}
+      objectReference: {fileID: 8300000, guid: e75d28da6a79c8b45b9f69df7c66035d, type: 3}
     - target: {fileID: 6947396401196777397, guid: 5166ebbf52c6f924f84e3333dfc9014b, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -812,7 +812,7 @@ PrefabInstance:
     - target: {fileID: 6947396401929005308, guid: 5166ebbf52c6f924f84e3333dfc9014b, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: a17373095a23b4e45b458f819acc6098, type: 3}
+      objectReference: {fileID: 8300000, guid: e75d28da6a79c8b45b9f69df7c66035d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5166ebbf52c6f924f84e3333dfc9014b, type: 3}
 --- !u!114 &585269761 stripped
