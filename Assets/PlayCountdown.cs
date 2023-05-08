@@ -7,6 +7,7 @@ using DG.Tweening;
 public class PlayCountdown : MonoBehaviour
 {
     [SerializeField] TMPro.TMP_Text tmpText;
+    [SerializeField] AudioSource audioSource;
     public UnityEvent OnStart;
     public UnityEvent OnEnd;
 
@@ -20,6 +21,7 @@ public class PlayCountdown : MonoBehaviour
         sequence.Append(tmpText.transform.DOScale(
             Vector3.one,1).OnComplete(()=>
             {
+                audioSource.Play();
                 tmpText.transform.localScale=Vector3.zero;
                 tmpText.text="2";
 
@@ -27,6 +29,7 @@ public class PlayCountdown : MonoBehaviour
          sequence.Append(tmpText.transform.DOScale(
             Vector3.one,1).OnComplete(()=>
            {
+            audioSource.Play();
                 tmpText.transform.localScale=Vector3.zero;
                 tmpText.text="1";
 
@@ -35,6 +38,7 @@ public class PlayCountdown : MonoBehaviour
         sequence.Append(tmpText.transform.DOScale(
             Vector3.one,1).OnComplete(()=>
            {
+            audioSource.Play();
                 tmpText.transform.localScale=Vector3.zero;
                 tmpText.text="Go!";
 
@@ -43,6 +47,7 @@ public class PlayCountdown : MonoBehaviour
          sequence.Append(tmpText.transform.DOScale(
             Vector3.one,1).OnComplete(()=> 
            {
+            audioSource.Play();
                 tmpText.transform.localScale=Vector3.zero;
                 tmpText.text="Go";
                 OnEnd.Invoke();

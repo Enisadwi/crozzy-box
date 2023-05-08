@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayManager : MonoBehaviour
 {
@@ -143,5 +144,15 @@ public class PlayManager : MonoBehaviour
     SpawnRandomTerrain(zPos: spawnPosition);
 
     OnUpdateTerrainLimit.Invoke(arg0: horizontalSize,arg1: travelDistance+backViewDistance);
+   }
+
+   public void Replay()
+   {
+    SceneManager.LoadScene(sceneName: SceneManager.GetActiveScene().name);
+   }
+
+   public void Quit()
+   {
+    SceneManager.LoadScene("Main");
    }
    }
